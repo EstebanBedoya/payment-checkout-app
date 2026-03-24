@@ -1,0 +1,12 @@
+### Variables
+@baseUrl = http://localhost:3001
+
+### Listar todos los productos
+GET {{baseUrl}}/products
+Accept: application/json
+
+### Obtener un producto por ID (Reemplazar con un ID real del seed)
+# Puedes ver los IDs en Prisma Studio o en el resultado de la lista anterior
+@productId = seed-product-001
+GET {{baseUrl}}/products/{{productId}}
+Accept: application/json

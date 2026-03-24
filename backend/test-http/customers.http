@@ -1,0 +1,22 @@
+### Variables
+@baseUrl = http://localhost:3001
+
+### Crear o actualizar un cliente
+POST {{baseUrl}}/customers
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "name": "Juan Perez",
+  "phone": "3001234567"
+}
+
+### Error de validación (Email inválido)
+POST {{baseUrl}}/customers
+Content-Type: application/json
+
+{
+  "email": "invalid-email",
+  "name": "Error User",
+  "phone": "123"
+}
