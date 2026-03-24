@@ -3,10 +3,12 @@ import type { Config } from 'jest'
 const config: Config = {
   testEnvironment: 'jsdom',
   transform: { 
-    '^.+\\.(t|j)sx?$': ['ts-jest', { tsconfig: { jsx: 'react-jsx' } }],
-    '^.+\\.mjs$': ['ts-jest', { tsconfig: { jsx: 'react-jsx', allowJs: true } }]
+    '^.+\\.(t|j)sx?$': ['ts-jest', { tsconfig: { jsx: 'react-jsx' }, diagnostics: false }],
+    '^.+\\.mjs$': ['ts-jest', { tsconfig: { jsx: 'react-jsx', allowJs: true }, diagnostics: false }]
   },
-  transformIgnorePatterns: ['/node_modules/(?!.*msw|.*@mswjs)'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!(msw|@mswjs)/)',
+  ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: { 
     '\\.(css|less|scss)$': 'identity-obj-proxy', 
