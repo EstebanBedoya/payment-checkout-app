@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { createTransaction, type CreateTransactionPayload } from '../../api/transactions.api'
-import { setResult, setError } from './payment.slice'
+import { createTransaction, getTransaction, type CreateTransactionPayload } from '../../api/transactions.api'
+import { setResult, setError, setLoading } from './payment.slice'
 import { setTransactionId, setStep } from '../checkout/checkout.slice'
 
 export const processPayment = createAsyncThunk(
@@ -15,6 +15,23 @@ export const processPayment = createAsyncThunk(
     } catch (e: any) {
       dispatch(setError(e.message))
       return rejectWithValue(e.message)
+    }
+  }
+)
+
+export const fetchTransactionStatus = createAsyncThunk(
+  'payment/fetchTransactionStatus',
+  async (transactionId: string, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(setLoading(true))
+      const result = await getTransaction(transactionId)
+      dispatch(setResult(result))
+      return result
+    } catch (e: any) {
+      dispatch(setError(e.message))
+      return rejectWithValue(e.message)
+    } finally {
+      dispatch(setLoading(false))
     }
   }
 )
