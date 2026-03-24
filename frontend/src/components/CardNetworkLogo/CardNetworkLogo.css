@@ -1,0 +1,14 @@
+.card-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 36px;
+  margin-left: var(--spacing-2);
+}
+
+.card-logo img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
