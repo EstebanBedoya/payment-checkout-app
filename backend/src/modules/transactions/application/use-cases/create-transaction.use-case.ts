@@ -31,15 +31,19 @@ export class CreateTransactionUseCase {
   ) {}
 
   async execute(input: CreateTransactionInput): Promise<Result<Transaction, DomainError>> {
-    // 1. Validate product + stock
+    // 1. Validate customer existence
+    const customer = await this.prisma.customer.findUnique({ where: { id: input.customerId } })
+    if (!customer) return err(Errors.customerNotFound())
+
+    // 2. Validate product + stock
     const product = await this.productRepo.findById(input.productId)
     if (!product) return err(Errors.productNotFound())
     if (product.stock <= 0) return err(Errors.stockUnavailable())
 
-    // 2. Calculate total amount
+    // 3. Calculate total amount
     const amountInCents = product.priceInCents + this.fees.baseFee + this.fees.deliveryFee
 
-    // 3. Persist PENDING transaction
+    // 4. Persist PENDING transaction
     const reference = randomUUID()
     const transaction = await this.txRepo.create({
       reference,
@@ -55,7 +59,7 @@ export class CreateTransactionUseCase {
       finalizedAt: null,
     })
 
-    // 4. Call payment gateway
+    // 5. Call payment gateway
     const paymentResult = await this.gateway.createTransaction({
       amountInCents,
       reference,
@@ -73,10 +77,10 @@ export class CreateTransactionUseCase {
 
     const wompiTx = paymentResult.value
 
-    // 5. Update transaction status from Wompi response
+    // 6. Update transaction status from Wompi response
     await this.txRepo.updateStatus(transaction.id, wompiTx.status as Transaction['status'], wompiTx.id)
 
-    // 6. If APPROVED: atomically create delivery + decrement stock
+    // 7. If APPROVED: atomically create delivery + decrement stock
     if (wompiTx.status === 'APPROVED') {
       await this.prisma.$transaction(async (tx: unknown) => {
         await this.deliveryRepo.create(

@@ -1,0 +1,202 @@
+/* ===================================================
+   Product Page - Editorial Financial Premium Styles
+   =================================================== */
+
+.product-list-view {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-hero) var(--spacing-struct);
+  animation: fadeIn 0.4s ease-out;
+}
+
+.list-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-hero);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-struct);
+}
+
+.product-card-premium {
+  background-color: var(--surface);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  position: relative;
+}
+
+.product-card-premium:hover {
+  transform: translateY(-4px);
+  background-color: var(--surface-high);
+}
+
+.card-image-wrapper {
+  aspect-ratio: 4/3;
+  width: 100%;
+  overflow: hidden;
+}
+
+.card-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card-premium:hover .card-image-wrapper img {
+  transform: scale(1.05);
+}
+
+.card-content-wrapper {
+  padding: var(--spacing-struct);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-tight);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.card-price {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ===================================================
+   Product Detail View
+   =================================================== */
+
+.product-detail-view {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-image-large {
+  width: 100%;
+  aspect-ratio: 1/1;
+  max-height: 50vh;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  margin-bottom: calc(var(--spacing-struct) * -1); /* Pull sheet up over image */
+  position: relative;
+  z-index: 1;
+}
+
+.product-image-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-content-sheet {
+  background-color: var(--surface-highest); /* Off-white bottom sheet for high contrast */
+  color: var(--text-inverse);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: var(--spacing-hero) var(--spacing-struct);
+  position: relative;
+  z-index: 2;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-struct);
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+}
+
+.product-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-tight);
+}
+
+.product-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-inverse);
+}
+
+.product-price {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-dim); /* Pop against the light bg */
+  margin: 0;
+  padding: 0.25rem 0.75rem;
+  background: var(--bg-base);
+  border-radius: var(--radius-full);
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.product-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-default);
+}
+
+.product-description {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #4a4746; /* text on light bg */
+  margin: 0;
+}
+
+.product-stock-badge {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #787573;
+}
+
+.action-area {
+  margin-top: auto;
+  padding-top: var(--spacing-hero);
+}
+
+.product-pay-btn {
+  /* Inherits from .btn-primary in index.css */
+  height: 4rem; /* Even larger for the main CTA */
+  font-size: 1.125rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

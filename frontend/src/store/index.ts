@@ -17,7 +17,7 @@ const storage = {
 }
 
 const paymentPersistConfig = { key: 'payment', storage, whitelist: ['tokenId'] }
-const checkoutPersistConfig = { key: 'checkout', storage, whitelist: ['step', 'productId'] }
+const checkoutPersistConfig = { key: 'checkout', storage, whitelist: ['step', 'productId', 'transactionId'] }
 
 const rootReducer = combineReducers({
   checkout: persistReducer(checkoutPersistConfig, checkoutReducer),

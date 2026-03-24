@@ -1,4 +1,5 @@
-const BASE = typeof process !== 'undefined' && process.env ? (process.env.VITE_API_URL || 'http://localhost:3001') : 'http://localhost:3001'
+// @ts-ignore
+const BASE = typeof process !== 'undefined' ? process.env.VITE_API_URL || 'http://localhost:3001/api/v1' : import.meta.env.VITE_API_URL
 
 export interface Product { id: string; name: string; description: string; imageUrl: string; priceInCents: number; stock: number }
 

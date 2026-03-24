@@ -1,4 +1,4 @@
-import { IWompiTokenizationAdapter, CardData, TokenizeResult } from './wompi-tokenization.interface'
+import type { IWompiTokenizationAdapter, CardData, TokenizeResult } from './wompi-tokenization.interface'
 
 interface Config { publicKey: string; apiUrl: string }
 

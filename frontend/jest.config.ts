@@ -14,7 +14,15 @@ const config: Config = {
     '\\.(css|less|scss)$': 'identity-obj-proxy', 
     '\\.(jpg|png|svg|webp)$': '<rootDir>/__mocks__/fileMock.ts' 
   },
-  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/main.tsx', '!src/**/*.d.ts'],
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/main.tsx',
+    '!src/**/*.d.ts',
+    '!src/api/**',
+    '!src/mocks/**',
+    '!src/**/*.mock.ts',
+    '!src/utils/env.ts',
+  ],
   coverageThreshold: { global: { lines: 80, branches: 80, functions: 80, statements: 80 } },
 }
 

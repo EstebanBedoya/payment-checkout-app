@@ -1,6 +1,7 @@
 export type DomainErrorCode =
   | 'PRODUCT_NOT_FOUND'
   | 'STOCK_UNAVAILABLE'
+  | 'CUSTOMER_NOT_FOUND'
   | 'TRANSACTION_NOT_FOUND'
   | 'DELIVERY_NOT_FOUND'
   | 'INVALID_CARD_TOKEN'
@@ -14,6 +15,7 @@ export class DomainError {
 
 export const Errors = {
   productNotFound: () => new DomainError('PRODUCT_NOT_FOUND', 'Product not found'),
+  customerNotFound: () => new DomainError('CUSTOMER_NOT_FOUND', 'Customer not found'),
   stockUnavailable: () => new DomainError('STOCK_UNAVAILABLE', 'Product out of stock'),
   transactionNotFound: () => new DomainError('TRANSACTION_NOT_FOUND', 'Transaction not found'),
   deliveryNotFound: () => new DomainError('DELIVERY_NOT_FOUND', 'Delivery not found'),

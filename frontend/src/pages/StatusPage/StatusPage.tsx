@@ -6,16 +6,20 @@ import { fetchTransactionStatus } from '../../store/payment/payment.thunks'
 
 import { formatCOP } from '../../utils/currency'
 
-export function StatusPage() {
+interface Props {
+  onRestart?: () => void
+}
+
+export function StatusPage({ onRestart }: Props) {
   const dispatch = useDispatch<AppDispatch>()
   const { result, loading, error } = useSelector((state: RootState) => state.payment)
   const { transactionId } = useSelector((state: RootState) => state.checkout)
 
   useEffect(() => {
-    if (transactionId && !result && !loading) {
+    if (transactionId && !result && !loading && !error) {
       dispatch(fetchTransactionStatus(transactionId))
     }
-  }, [transactionId, result, loading, dispatch])
+  }, [transactionId, result, loading, error, dispatch])
 
   if (loading) {
 
@@ -67,7 +71,7 @@ export function StatusPage() {
         </div>
 
         <div className="status-card__actions">
-          <button className="btn-secondary" onClick={() => window.location.href = '/'}>
+          <button className="btn-secondary" onClick={() => onRestart?.()}>
             Volver al inicio
           </button>
         </div>

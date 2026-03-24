@@ -10,11 +10,10 @@ import { SummaryBackdrop } from '../../components/SummaryBackdrop/SummaryBackdro
 import { upsertCustomer } from '../../api/customers.api'
 import { fetchProduct } from '../../api/products.api'
 import { WompiTokenizationAdapter } from '../../adapters/wompi/wompi-tokenization.adapter'
-import { Product } from '../../api/products.api'
 
 const wompiAdapter = new WompiTokenizationAdapter({
-  publicKey: 'pub_test',
-  apiUrl: 'https://api-sandbox.co.uat.wompi.dev/v1',
+  publicKey: import.meta.env.VITE_WOMPI_PUBLIC_KEY ?? 'pub_test',
+  apiUrl: import.meta.env.VITE_WOMPI_API_URL ?? 'https://api-sandbox.co.uat.wompi.dev/v1',
 })
 
 const BASE_FEE = 300000

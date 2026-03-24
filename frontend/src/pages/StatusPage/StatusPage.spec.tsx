@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
@@ -93,5 +93,40 @@ describe('StatusPage', () => {
     )
 
     expect(screen.getByText(/pago pendiente/i)).toBeInTheDocument()
+  })
+
+  it('calls onRestart when button is clicked', () => {
+    const onRestart = jest.fn()
+    const store = makeStore({
+      result: { transactionId: 'tr_123', reference: 'REF123', status: 'APPROVED', amountInCents: 100000 },
+    })
+
+    render(
+      <Provider store={store}>
+        <StatusPage onRestart={onRestart} />
+      </Provider>
+    )
+
+    fireEvent.click(screen.getByText(/volver al inicio/i))
+    expect(onRestart).toHaveBeenCalledTimes(1)
+  })
+
+  it('dispatches fetchTransactionStatus on refresh when transactionId exists but result is null', () => {
+    const mockThunkAction = { type: 'payment/fetchStatus' }
+    const mockFetch = paymentThunks.fetchTransactionStatus as jest.Mock
+    mockFetch.mockReturnValue(mockThunkAction)
+
+    const store = makeStore(
+      { result: null, loading: false },
+      { transactionId: 'tr_123' }
+    )
+
+    render(
+      <Provider store={store}>
+        <StatusPage />
+      </Provider>
+    )
+
+    expect(mockFetch).toHaveBeenCalledWith('tr_123')
   })
 })

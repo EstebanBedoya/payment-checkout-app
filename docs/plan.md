@@ -1833,7 +1833,7 @@ git add frontend/src/api/ && git commit -m "feat(frontend): API layer — produc
 - Create: `frontend/src/pages/ProductPage/ProductPage.tsx`
 - Create: `frontend/src/pages/ProductPage/ProductPage.spec.tsx`
 
-- [ ] **Step 1: Write failing tests**
+- [x] **Step 1: Write failing tests**
 ```typescript
 // frontend/src/pages/ProductPage/ProductPage.spec.tsx
 import { render, screen, fireEvent } from '@testing-library/react'
@@ -1901,9 +1901,9 @@ afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 ```
 
-- [ ] **Step 3: Run — expect FAIL**
+- [x] **Step 3: Run — expect FAIL**
 
-- [ ] **Step 4: Implement ProductPage**
+- [x] **Step 4: Implement ProductPage**
 
 Uses React 19 `use()` hook with Suspense for data fetching:
 
@@ -1956,12 +1956,12 @@ export function ProductPage({ onPayClick }: { onPayClick?: () => void }) {
 }
 ```
 
-- [ ] **Step 5: Run — expect PASS**
+- [ ] **Step 5: Run — expect PASS** (Note: List-Detail navigation mismatch)
 ```bash
 cd frontend && npx jest src/pages/ProductPage/ --no-coverage
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add frontend/src/pages/ProductPage/ frontend/src/mocks/
 git commit -m "feat(frontend): ProductPage with React 19 use() + Suspense (TDD)"
@@ -2203,10 +2203,11 @@ git commit -m "feat(frontend): SummaryBackdrop + payment thunk (TDD)"
 - Create: `frontend/src/pages/StatusPage/StatusPage.tsx` + spec
 
 - [x] **Step 1: Write failing tests**
-- [x] **Step 2: Run — expect FAIL**
-- [x] **Step 3: Implement StatusPage with refresh recovery**
-- [x] **Step 4: Run — expect PASS**
-- [x] **Step 5: Commit**
+- [x] **Step 2: Set up MSW**
+- [x] **Step 3: Run — expect FAIL**
+- [x] **Step 4: Implement StatusPage with refresh recovery**
+- [x] **Step 5: Run — expect PASS**
+- [x] **Step 6: Commit**
 ```bash
 git add frontend/src/pages/StatusPage/ && git commit -m "feat(frontend): StatusPage with refresh recovery (TDD)"
 ```
@@ -2232,7 +2233,7 @@ git add frontend/src/pages/CheckoutPage/ && git commit -m "feat(frontend): Check
 
 **Files:** `frontend/src/App.tsx`, `frontend/src/App.spec.tsx`, `frontend/src/main.tsx`
 
-- [ ] **Step 1: Implement App.tsx**
+- [x] **Step 1: Implement App.tsx**
 ```typescript
 // frontend/src/App.tsx
 import { useSelector, useDispatch } from 'react-redux'
@@ -2264,7 +2265,7 @@ export default function App() {
 }
 ```
 
-- [ ] **Step 2: Update main.tsx**
+- [x] **Step 2: Update main.tsx**
 ```typescript
 // frontend/src/main.tsx
 import { StrictMode } from 'react'

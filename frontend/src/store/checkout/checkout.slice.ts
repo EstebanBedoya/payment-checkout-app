@@ -8,7 +8,7 @@ const checkoutSlice = createSlice({
   initialState,
   reducers: {
     setStep: (s, a: PayloadAction<number>) => { s.step = a.payload },
-    setProductId: (s, a: PayloadAction<string>) => { s.productId = a.payload },
+    setProductId: (s, a: PayloadAction<string | null>) => { s.productId = a.payload },
     setTransactionId: (s, a: PayloadAction<string>) => { s.transactionId = a.payload },
     resetCheckout: () => initialState,
   },

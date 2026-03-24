@@ -1,0 +1,45 @@
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(27, 25, 24, 0.8); /* surface_container at 80% opacity */
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--ghost-border);
+  padding: var(--spacing-default) var(--spacing-struct);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 48px;
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-tight);
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.back-button:hover {
+  opacity: 0.8;
+  color: var(--primary);
+}
+
+.logo-placeholder {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text-main);
+  letter-spacing: 0.05em;
+}

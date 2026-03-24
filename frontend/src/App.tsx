@@ -1,66 +1,66 @@
-import { useState } from 'react'
-import { CreditCardForm } from './components/CreditCardForm/CreditCardForm'
-import { DeliveryForm } from './components/DeliveryForm/DeliveryForm'
-import { SummaryBackdrop } from './components/SummaryBackdrop/SummaryBackdrop'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import type { RootState, AppDispatch } from './store'
+import { setStep, resetCheckout } from './store/checkout/checkout.slice'
+import { resetPayment } from './store/payment/payment.slice'
+import { fetchTransactionStatus } from './store/payment/payment.thunks'
+import { ProductPage } from './pages/ProductPage/ProductPage'
+import { CheckoutPage } from './pages/CheckoutPage/CheckoutPage'
+import { StatusPage } from './pages/StatusPage/StatusPage'
+import { Header } from './components/Header/Header'
 import './App.css'
 
 function App() {
-  const [showSummary, setShowSummary] = useState(false)
+  const dispatch = useDispatch<AppDispatch>()
+  const step = useSelector((s: RootState) => s.checkout.step)
+  const transactionId = useSelector((s: RootState) => s.checkout.transactionId)
+  const result = useSelector((s: RootState) => s.payment.result)
+  const loading = useSelector((s: RootState) => s.payment.loading)
 
-  const dummyAmounts = {
-    productPrice: 15000000,
-    baseFee: 300000,
-    deliveryFee: 500000,
-    total: 15800000
+  // Refresh recovery: on mount, if there's a persisted transactionId without result, fetch it
+  useEffect(() => {
+    if (transactionId && !result && !loading) {
+      dispatch(fetchTransactionStatus(transactionId))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // If we have a result for a transaction, ensure we're on step 4
+  useEffect(() => {
+    if (transactionId && result && step !== 4) {
+      dispatch(setStep(4))
+    }
+  }, [transactionId, result, step, dispatch])
+
+  const handleRestart = () => {
+    dispatch(resetCheckout())
+    dispatch(resetPayment())
   }
 
+  if (step === 4) return (
+    <div className="app-container">
+      <Header />
+      <main className="page">
+        <StatusPage onRestart={handleRestart} />
+      </main>
+    </div>
+  )
+  
+  if (step >= 2 && step <= 3) return (
+    <div className="app-container">
+      <Header />
+      <main className="page">
+        <CheckoutPage />
+      </main>
+    </div>
+  )
+
   return (
-    <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-      <header style={{ marginBottom: '4rem', textAlign: 'center' }}>
-        <h1 className="display-text" style={{ fontSize: '3rem', marginBottom: '1rem' }}>Component Gallery</h1>
-        <p style={{ color: 'var(--text-muted)' }}>Editorial Financial Premium — Design System Preview</p>
-      </header>
-
-      <section style={{ marginBottom: '4rem' }}>
-        <h2 style={{ marginBottom: '2rem', borderBottom: '1px solid var(--ghost-border)', paddingBottom: '0.5rem' }}>1. Payment & Card Detection</h2>
-        <div style={{ backgroundColor: 'var(--surface)', padding: '2rem', borderRadius: '1.5rem' }}>
-          <CreditCardForm onSubmit={(data) => console.log('Card Data:', data)} />
-        </div>
-      </section>
-
-      <section style={{ marginBottom: '4rem' }}>
-        <h2 style={{ marginBottom: '2rem', borderBottom: '1px solid var(--ghost-border)', paddingBottom: '0.5rem' }}>2. Delivery Information</h2>
-        <div style={{ backgroundColor: 'var(--surface)', padding: '2rem', borderRadius: '1.5rem' }}>
-          <DeliveryForm onSubmit={(data) => console.log('Delivery Data:', data)} />
-        </div>
-      </section>
-
-      <section style={{ marginBottom: '4rem', textAlign: 'center' }}>
-        <h2 style={{ marginBottom: '2rem', borderBottom: '1px solid var(--ghost-border)', paddingBottom: '0.5rem' }}>3. Summary & Backdrop</h2>
-        <button 
-          className="btn-primary" 
-          onClick={() => setShowSummary(true)}
-          style={{ maxWidth: '300px', margin: '0 auto' }}
-        >
-          Open Summary Backdrop
-        </button>
-      </section>
-
-      {showSummary && (
-        <SummaryBackdrop 
-          amounts={dummyAmounts} 
-          onConfirm={() => {
-            alert('Payment Confirmed!');
-            setShowSummary(false);
-          }} 
-          onBack={() => setShowSummary(false)} 
-          loading={false}
-        />
-      )}
-
-      <footer style={{ marginTop: '8rem', textAlign: 'center', opacity: 0.5, fontSize: '0.875rem' }}>
-        Built with Antigravity • Payment Checkout App
-      </footer>
+    <div className="app-container">
+      <Header />
+      <main className="page">
+        <ProductPage />
+      </main>
     </div>
   )
 }

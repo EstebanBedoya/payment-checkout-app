@@ -27,7 +27,12 @@ const mockDeliveryRepo = {
   create: jest.fn(),
   findByTransactionId: jest.fn(),
 }
-const mockPrisma = { $transaction: jest.fn((fn: (tx: unknown) => unknown) => fn(mockPrisma)) }
+const mockPrisma = {
+  $transaction: jest.fn((fn: (tx: unknown) => unknown) => fn(mockPrisma)),
+  customer: {
+    findUnique: jest.fn(),
+  },
+}
 const wompiMock = new WompiPaymentAdapterMock()
 
 const baseInput = {
@@ -64,6 +69,7 @@ describe('CreateTransactionUseCase', () => {
     jest.restoreAllMocks() // restore any jest.spyOn() from prior tests
     jest.clearAllMocks()
     wompiMock.setStatus('APPROVED')
+    mockPrisma.customer.findUnique.mockResolvedValue({ id: 'c1', name: 'Juan', email: 'j@t.com' })
     mockProductRepo.findById.mockResolvedValue(product)
     mockTransactionRepo.create.mockResolvedValue(pendingTx)
     mockTransactionRepo.updateStatus.mockResolvedValue(undefined)
@@ -76,6 +82,14 @@ describe('CreateTransactionUseCase', () => {
       mockPrisma as any,
       { baseFee: 300000, deliveryFee: 500000 },
     )
+  })
+
+  it('returns Err(CUSTOMER_NOT_FOUND) when customer missing', async () => {
+    mockPrisma.customer.findUnique.mockResolvedValue(null)
+    const r = await useCase.execute(baseInput)
+    expect(r.isErr()).toBe(true)
+    if (r.isErr()) expect(r.error.code).toBe('CUSTOMER_NOT_FOUND')
+    expect(mockTransactionRepo.create).not.toHaveBeenCalled()
   })
 
   it('returns Err(PRODUCT_NOT_FOUND) when product missing', async () => {

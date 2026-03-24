@@ -1,4 +1,5 @@
-const BASE = import.meta.env.VITE_API_URL
+// @ts-ignore
+const BASE = typeof process !== 'undefined' ? process.env.VITE_API_URL || 'http://localhost:3001/api/v1' : import.meta.env.VITE_API_URL
 
 export interface CustomerPayload { name: string; email: string; phone: string; address: string; city: string }
 export interface Customer { id: string; name: string; email: string }

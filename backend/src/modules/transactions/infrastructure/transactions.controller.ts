@@ -8,6 +8,7 @@ import { DomainErrorCode } from '../../../shared/domain-errors'
 const ERROR_STATUS: Record<DomainErrorCode, number> = {
   PRODUCT_NOT_FOUND: 404,
   STOCK_UNAVAILABLE: 409,
+  CUSTOMER_NOT_FOUND: 404,
   TRANSACTION_NOT_FOUND: 404,
   DELIVERY_NOT_FOUND: 404,
   INVALID_CARD_TOKEN: 400,
