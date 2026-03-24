@@ -11,6 +11,11 @@ export interface CardData {
   cvc: string
 }
 
+function formatCardNumber(raw: string): string {
+  const digits = raw.replace(/\D/g, '').slice(0, 16)
+  return digits.replace(/(.{4})/g, '$1 ').trim()
+}
+
 export function CreditCardForm({ onSubmit }: { onSubmit: (data: CardData) => void }) {
   const [number, setNumber] = useState('')
   const [cardHolder, setCardHolder] = useState('')
@@ -21,12 +26,11 @@ export function CreditCardForm({ onSubmit }: { onSubmit: (data: CardData) => voi
 
   const network: CardNetwork = detectCardNetwork(number)
 
-  // Validations
   const isLuhnValid = validateLuhn(number)
   const isCardHolderValid = cardHolder.trim().length > 2
   const isExpMonthValid = /^\d{2}$/.test(expMonth) && parseInt(expMonth, 10) >= 1 && parseInt(expMonth, 10) <= 12
   const isExpYearValid = /^\d{2}$/.test(expYear)
-  
+
   let isFutureDate = false
   if (isExpMonthValid && isExpYearValid) {
     const now = new Date()
@@ -40,7 +44,6 @@ export function CreditCardForm({ onSubmit }: { onSubmit: (data: CardData) => voi
   }
 
   const isCvcValid = /^\d{3,4}$/.test(cvc)
-
   const isValid = isLuhnValid && isCardHolderValid && isFutureDate && isCvcValid
   const showError = touched && !isValid
 
@@ -53,7 +56,7 @@ export function CreditCardForm({ onSubmit }: { onSubmit: (data: CardData) => voi
         cardHolder,
         expMonth,
         expYear,
-        cvc
+        cvc,
       })
     }
   }
@@ -61,12 +64,15 @@ export function CreditCardForm({ onSubmit }: { onSubmit: (data: CardData) => voi
   return (
     <form onSubmit={handleSubmit} onBlur={() => setTouched(true)} className="credit-card-form" noValidate>
       <div className="form-group">
-        <div className={`input-with-logo ${showError && !isLuhnValid ? 'input-error' : ''}`}>
+        <label htmlFor="cc-number" className="form-label">Número de tarjeta</label>
+        <div className={`input-with-logo${showError && !isLuhnValid ? ' input-error' : ''}`}>
           <input
+            id="cc-number"
             value={number}
-            onChange={e => setNumber(e.target.value)}
-            placeholder="Número de tarjeta"
+            onChange={e => setNumber(formatCardNumber(e.target.value))}
+            placeholder="1234 5678 9012 3456"
             maxLength={19}
+            inputMode="numeric"
             aria-invalid={showError && !isLuhnValid ? 'true' : 'false'}
           />
           <CardNetworkLogo network={network} />
@@ -75,10 +81,12 @@ export function CreditCardForm({ onSubmit }: { onSubmit: (data: CardData) => voi
       </div>
 
       <div className="form-group">
+        <label htmlFor="cc-holder" className="form-label">Nombre del titular</label>
         <input
+          id="cc-holder"
           value={cardHolder}
           onChange={e => setCardHolder(e.target.value)}
-          placeholder="Nombre del titular"
+          placeholder="Como aparece en la tarjeta"
           className={showError && !isCardHolderValid ? 'input-error' : ''}
           aria-invalid={showError && !isCardHolderValid ? 'true' : 'false'}
         />
@@ -87,32 +95,41 @@ export function CreditCardForm({ onSubmit }: { onSubmit: (data: CardData) => voi
 
       <div className="expiry-row">
         <div className="form-group">
+          <label htmlFor="cc-month" className="form-label">Mes exp.</label>
           <input
+            id="cc-month"
             value={expMonth}
             onChange={e => setExpMonth(e.target.value)}
             placeholder="MM"
             maxLength={2}
+            inputMode="numeric"
             className={showError && !isExpMonthValid ? 'input-error' : ''}
             aria-invalid={showError && !isExpMonthValid ? 'true' : 'false'}
           />
         </div>
         <div className="form-group">
+          <label htmlFor="cc-year" className="form-label">Año exp.</label>
           <input
+            id="cc-year"
             value={expYear}
             onChange={e => setExpYear(e.target.value)}
             placeholder="YY"
             maxLength={2}
+            inputMode="numeric"
             className={showError && !isFutureDate ? 'input-error' : ''}
             aria-invalid={showError && !isFutureDate ? 'true' : 'false'}
           />
         </div>
         <div className="form-group">
+          <label htmlFor="cc-cvc" className="form-label">CVV</label>
           <input
+            id="cc-cvc"
             value={cvc}
             onChange={e => setCvc(e.target.value)}
-            placeholder="CVV"
+            placeholder="123"
             maxLength={4}
             type="password"
+            inputMode="numeric"
             className={showError && !isCvcValid ? 'input-error' : ''}
             aria-invalid={showError && !isCvcValid ? 'true' : 'false'}
           />

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { formatCOP } from '../../utils/currency'
+import { useFocusTrap } from '../../hooks/useFocusTrap'
 import './SummaryBackdrop.css'
 
 export interface Amounts {
@@ -17,6 +18,8 @@ export function SummaryBackdrop({ amounts, onConfirm, onBack, loading }: {
 }) {
   const dialogRef = useRef<HTMLDivElement>(null)
 
+  useFocusTrap(dialogRef, !loading)
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && !loading) {
@@ -29,15 +32,16 @@ export function SummaryBackdrop({ amounts, onConfirm, onBack, loading }: {
 
   return (
     <div className="backdrop-overlay">
-      <div 
+      <div
         className="backdrop-sheet"
         role="dialog"
         aria-modal="true"
         aria-labelledby="summary-title"
         ref={dialogRef}
+        tabIndex={-1}
       >
         <h2 id="summary-title" className="backdrop-title">Resumen de pago</h2>
-        
+
         <div className="summary-content">
           <table className="summary-table">
             <tbody>
@@ -62,16 +66,16 @@ export function SummaryBackdrop({ amounts, onConfirm, onBack, loading }: {
         </div>
 
         <div className="backdrop-actions">
-          <button 
-            className="btn-secondary" 
-            onClick={onBack} 
+          <button
+            className="btn-secondary"
+            onClick={onBack}
             disabled={loading}
           >
             Volver
           </button>
-          <button 
+          <button
             className="btn-primary btn-cta"
-            onClick={onConfirm} 
+            onClick={onConfirm}
             disabled={loading}
             aria-busy={loading}
           >

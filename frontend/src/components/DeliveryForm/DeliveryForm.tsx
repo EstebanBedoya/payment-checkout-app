@@ -37,7 +37,7 @@ export function DeliveryForm({ onSubmit }: { onSubmit: (data: DeliveryData) => v
         email: email.trim(),
         phone: phone.replace(/\D/g, ''),
         address: address.trim(),
-        city: city.trim()
+        city: city.trim(),
       })
     }
   }
@@ -45,10 +45,12 @@ export function DeliveryForm({ onSubmit }: { onSubmit: (data: DeliveryData) => v
   return (
     <form onSubmit={handleSubmit} onBlur={() => setTouched(true)} className="delivery-form" noValidate>
       <div className="form-group">
+        <label htmlFor="dl-name" className="form-label">Nombre completo</label>
         <input
+          id="dl-name"
           value={name}
           onChange={e => setName(e.target.value)}
-          placeholder="Nombre completo"
+          placeholder="Tu nombre completo"
           className={showError && !isNameValid ? 'input-error' : ''}
           aria-invalid={showError && !isNameValid ? 'true' : 'false'}
         />
@@ -56,11 +58,13 @@ export function DeliveryForm({ onSubmit }: { onSubmit: (data: DeliveryData) => v
       </div>
 
       <div className="form-group">
+        <label htmlFor="dl-email" className="form-label">Correo electrónico</label>
         <input
+          id="dl-email"
           type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
-          placeholder="Correo electrónico"
+          placeholder="tu@correo.com"
           className={showError && !isEmailValid ? 'input-error' : ''}
           aria-invalid={showError && !isEmailValid ? 'true' : 'false'}
         />
@@ -68,33 +72,40 @@ export function DeliveryForm({ onSubmit }: { onSubmit: (data: DeliveryData) => v
       </div>
 
       <div className="form-group">
+        <label htmlFor="dl-phone" className="form-label">Teléfono</label>
         <input
+          id="dl-phone"
           type="tel"
           value={phone}
           onChange={e => setPhone(e.target.value)}
-          placeholder="Teléfono"
+          placeholder="3001234567"
+          inputMode="tel"
           className={showError && !isPhoneValid ? 'input-error' : ''}
           aria-invalid={showError && !isPhoneValid ? 'true' : 'false'}
         />
-        {showError && !isPhoneValid && <span role="alert" className="error-text">Teléfono inválido (min 7 dígitos)</span>}
+        {showError && !isPhoneValid && <span role="alert" className="error-text">Teléfono inválido (mín. 7 dígitos)</span>}
       </div>
 
       <div className="row-group">
         <div className="form-group">
+          <label htmlFor="dl-address" className="form-label">Dirección</label>
           <input
+            id="dl-address"
             value={address}
             onChange={e => setAddress(e.target.value)}
-            placeholder="Dirección"
+            placeholder="Calle 123 # 45-67"
             className={showError && !isAddressValid ? 'input-error' : ''}
             aria-invalid={showError && !isAddressValid ? 'true' : 'false'}
           />
           {showError && !isAddressValid && <span role="alert" className="error-text">Dirección inválida</span>}
         </div>
         <div className="form-group">
+          <label htmlFor="dl-city" className="form-label">Ciudad</label>
           <input
+            id="dl-city"
             value={city}
             onChange={e => setCity(e.target.value)}
-            placeholder="Ciudad"
+            placeholder="Bogotá"
             className={showError && !isCityValid ? 'input-error' : ''}
             aria-invalid={showError && !isCityValid ? 'true' : 'false'}
           />
@@ -103,7 +114,7 @@ export function DeliveryForm({ onSubmit }: { onSubmit: (data: DeliveryData) => v
       </div>
 
       <button type="submit" disabled={!isValid} className="btn-primary">
-        Continuar a Pago
+        Continuar a pago
       </button>
     </form>
   )

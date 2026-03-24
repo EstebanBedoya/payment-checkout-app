@@ -34,6 +34,7 @@
   flex: 1;
   background: transparent;
   border: none;
+  border-radius: 0;
   color: var(--text-main);
   padding: var(--spacing-default);
   font-size: 1rem;
@@ -49,8 +50,4 @@
 
 .expiry-row .form-group {
   flex: 1;
-}
-
-.btn-primary {
-  margin-top: var(--spacing-struct);
 }

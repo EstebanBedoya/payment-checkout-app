@@ -15,6 +15,6 @@ import { DecrementStockUseCase } from '../application/use-cases/decrement-stock.
     GetProductsUseCase,
     DecrementStockUseCase,
   ],
-  exports: [GetProductUseCase, DecrementStockUseCase],
+  exports: [GetProductUseCase, DecrementStockUseCase, 'IProductRepository'],
 })
 export class ProductsModule {}

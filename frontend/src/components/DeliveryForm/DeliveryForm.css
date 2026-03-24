@@ -14,30 +14,3 @@
 .delivery-form .row-group .form-group {
   flex: 1;
 }
-
-.delivery-form input {
-  background-color: var(--surface);
-  border: none;
-  border-bottom: 2px solid var(--ghost-border);
-  color: var(--text-main);
-  padding: var(--spacing-default);
-  font-size: 1rem;
-  outline: none;
-  transition: border-bottom-color 0.2s ease, background-color 0.2s ease;
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-}
-
-.delivery-form input::placeholder {
-  color: var(--text-muted);
-}
-
-.delivery-form input:focus {
-  border-bottom-color: var(--secondary);
-  background-color: var(--surface-high);
-}
-
-.delivery-form input.input-error {
-  border-bottom-color: var(--error);
-}

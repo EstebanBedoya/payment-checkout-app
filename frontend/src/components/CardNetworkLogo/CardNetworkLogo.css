@@ -2,9 +2,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 24px;
-  width: 36px;
-  margin-left: var(--spacing-2);
+  height: 28px;
+  width: 44px;
+  margin-left: var(--spacing-tight);
 }
 
 .card-logo img {

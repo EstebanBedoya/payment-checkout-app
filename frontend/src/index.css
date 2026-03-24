@@ -37,6 +37,9 @@
   --spacing-struct: 2rem;
   --spacing-hero: 4rem;
 
+  /* Misc */
+  --outline-variant: #4a4746;
+
   /* Shadows */
   --glow-primary: 0 0 48px rgba(217, 249, 91, 0.15);
 }
@@ -98,6 +101,7 @@ input {
   background-color: var(--surface);
   border: none;
   border-bottom: 2px solid var(--ghost-border);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   color: var(--text-main);
   font-family: var(--font-body);
   font-size: 1rem;
@@ -125,5 +129,15 @@ input.input-error {
   color: var(--error);
   font-size: 0.875rem;
   margin-top: calc(var(--spacing-tight) / 2);
+  display: block;
+}
+
+.form-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
   display: block;
 }

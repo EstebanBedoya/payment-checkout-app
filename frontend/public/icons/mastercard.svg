@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 15"><text x="0" y="12" fill="white">MC</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 500" role="img" aria-label="Mastercard">
+  <rect width="780" height="500" rx="40" fill="#252525"/>
+  <circle cx="303" cy="250" r="150" fill="#eb001b"/>
+  <circle cx="477" cy="250" r="150" fill="#f79e1b"/>
+  <path d="M390 141.3c34.8 26.3 57.4 67.4 57.4 113.7s-22.6 87.4-57.4 113.7c-34.8-26.3-57.4-67.4-57.4-113.7s22.6-87.4 57.4-113.7z" fill="#ff5f00"/>
+</svg>

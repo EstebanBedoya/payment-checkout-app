@@ -29,4 +29,30 @@ describe('SummaryBackdrop', () => {
     fireEvent.click(screen.getByRole('button', { name: /volver/i }))
     expect(onBack).toHaveBeenCalled()
   })
+
+  it('moves focus into the dialog on mount', () => {
+    render(<SummaryBackdrop amounts={amounts} onConfirm={jest.fn()} onBack={jest.fn()} loading={false} />)
+    const dialog = screen.getByRole('dialog')
+    expect(dialog.contains(document.activeElement)).toBe(true)
+  })
+
+  it('closes on Escape key when not loading', () => {
+    const onBack = jest.fn()
+    render(<SummaryBackdrop amounts={amounts} onConfirm={jest.fn()} onBack={onBack} loading={false} />)
+    fireEvent.keyDown(window, { key: 'Escape' })
+    expect(onBack).toHaveBeenCalled()
+  })
+
+  it('does not close on Escape when loading', () => {
+    const onBack = jest.fn()
+    render(<SummaryBackdrop amounts={amounts} onConfirm={jest.fn()} onBack={onBack} loading={true} />)
+    fireEvent.keyDown(window, { key: 'Escape' })
+    expect(onBack).not.toHaveBeenCalled()
+  })
+
+  it('has role=dialog and aria-modal=true', () => {
+    render(<SummaryBackdrop amounts={amounts} onConfirm={jest.fn()} onBack={jest.fn()} loading={false} />)
+    const dialog = screen.getByRole('dialog')
+    expect(dialog).toHaveAttribute('aria-modal', 'true')
+  })
 })

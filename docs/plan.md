@@ -1149,12 +1149,12 @@ export class CreateTransactionUseCase {
 
 Note: Delivery address/city must come from input. Update the input type and test accordingly to pass `address` and `city` from the customer data (fetch customer or pass in input). **Preferred approach:** add `address` and `city` to `CreateTransactionInput`, populated from the customer record already created by the frontend step. Update tests to include these fields.
 
-- [ ] **Step 5: Run — expect PASS**
+- [x] **Step 5: Run — expect PASS**
 ```bash
 cd backend && npx jest transactions/__tests__/ --no-coverage
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add backend/src/modules/transactions/ && git commit -m "feat(backend): transactions domain + CreateTransaction use case (TDD)"
 ```
@@ -1169,7 +1169,7 @@ git add backend/src/modules/transactions/ && git commit -m "feat(backend): trans
 - Create: `backend/src/modules/transactions/infrastructure/transactions.module.ts`
 - Create: `backend/src/modules/deliveries/` (full module, same pattern)
 
-- [ ] **Step 1: Implement Prisma transaction repository**
+- [x] **Step 1: Implement Prisma transaction repository**
 ```typescript
 // backend/src/modules/transactions/infrastructure/prisma-transaction.repository.ts
 import { Injectable } from '@nestjs/common'
@@ -1201,7 +1201,7 @@ export class PrismaTransactionRepository implements ITransactionRepository {
 }
 ```
 
-- [ ] **Step 2: Implement transactions controller**
+- [x] **Step 2: Implement transactions controller**
 
 Maps results to HTTP per the error catalog in `docs/spec.md` §4:
 - `Ok → 201` for POST, `200` for GET
@@ -1257,9 +1257,9 @@ export class TransactionsController {
 }
 ```
 
-- [ ] **Step 3: Implement deliveries module** (same pattern — `IDeliveryRepository` port, `PrismaDeliveryRepository`, `GetDeliveryUseCase`, `DeliveriesController` with `GET /deliveries/:transactionId`)
+- [x] **Step 3: Implement deliveries module** (same pattern — `IDeliveryRepository` port, `PrismaDeliveryRepository`, `GetDeliveryUseCase`, `DeliveriesController` with `GET /deliveries/:transactionId`)
 
-- [ ] **Step 4: Wire all modules in `app.module.ts`**
+- [x] **Step 4: Wire all modules in `app.module.ts`**
 ```typescript
 // backend/src/app.module.ts
 import { Module } from '@nestjs/common'
@@ -1279,13 +1279,13 @@ import { DeliveriesModule } from './modules/deliveries/infrastructure/deliveries
 export class AppModule {}
 ```
 
-- [ ] **Step 5: Write controller tests + run all backend tests**
+- [x] **Step 5: Write controller tests + run all backend tests**
 ```bash
 cd backend && npm test -- --coverage
 ```
 Expected: >80% coverage, all tests pass.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add backend/src/modules/transactions/infrastructure/ backend/src/modules/deliveries/ backend/src/app.module.ts
 git commit -m "feat(backend): transactions + deliveries infrastructure, app module wired"
@@ -1297,7 +1297,7 @@ git commit -m "feat(backend): transactions + deliveries infrastructure, app modu
 
 **Files:** `backend/src/main.ts`
 
-- [ ] **Step 1: Update `main.ts`**
+- [x] **Step 1: Update `main.ts`**
 ```typescript
 // backend/src/main.ts
 import { NestFactory } from '@nestjs/core'
@@ -1332,13 +1332,13 @@ async function bootstrap() {
 bootstrap()
 ```
 
-- [ ] **Step 2: Start and verify**
+- [x] **Step 2: Start and verify**
 ```bash
 cd backend && npm run start:dev
 ```
 Expected: API running, Swagger at `/api/docs`, `GET /api/v1/products` returns seeded product.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 ```bash
 git add backend/src/main.ts && git commit -m "feat(backend): add Helmet security headers, CORS, ValidationPipe, Swagger"
 ```
@@ -1412,7 +1412,7 @@ git add frontend/ && git commit -m "feat(frontend): scaffold React 19 + Vite + R
 - Create: `frontend/src/utils/luhn.ts` + `luhn.spec.ts`
 - Create: `frontend/src/utils/currency.ts` + `currency.spec.ts`
 
-- [ ] **Step 1: Write failing Luhn tests**
+- [x] **Step 1: Write failing Luhn tests**
 ```typescript
 // frontend/src/utils/luhn.spec.ts
 import { validateLuhn, detectCardNetwork } from './luhn'
@@ -1431,12 +1431,12 @@ describe('detectCardNetwork', () => {
 })
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 ```bash
 cd frontend && npx jest src/utils/luhn.spec.ts --no-coverage
 ```
 
-- [ ] **Step 3: Implement `luhn.ts`**
+- [x] **Step 3: Implement `luhn.ts`**
 ```typescript
 // frontend/src/utils/luhn.ts
 export function validateLuhn(cardNumber: string): boolean {
@@ -1463,7 +1463,7 @@ export function detectCardNetwork(cardNumber: string): CardNetwork {
 }
 ```
 
-- [ ] **Step 4: Implement `currency.ts` + tests**
+- [x] **Step 4: Implement `currency.ts` + tests**
 ```typescript
 // frontend/src/utils/currency.ts
 export function formatCOP(amountInCents: number): string {
@@ -1479,12 +1479,12 @@ it('formats 15000000 cents as COP $150.000', () => {
 })
 ```
 
-- [ ] **Step 5: Run — expect PASS**
+- [x] **Step 5: Run — expect PASS**
 ```bash
 cd frontend && npx jest src/utils/ --no-coverage
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add frontend/src/utils/ && git commit -m "feat(frontend): Luhn validation, card network detection, COP formatter (TDD)"
 ```
@@ -1499,7 +1499,7 @@ git add frontend/src/utils/ && git commit -m "feat(frontend): Luhn validation, c
 - Create: `frontend/src/adapters/wompi/wompi-tokenization.mock.ts`
 - Create: `frontend/src/adapters/wompi/wompi-tokenization.adapter.spec.ts`
 
-- [ ] **Step 1: Write failing tests**
+- [x] **Step 1: Write failing tests**
 ```typescript
 // frontend/src/adapters/wompi/wompi-tokenization.adapter.spec.ts
 import { WompiTokenizationAdapter } from './wompi-tokenization.adapter'
@@ -1528,12 +1528,12 @@ describe('WompiTokenizationAdapter', () => {
 })
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 ```bash
 cd frontend && npx jest src/adapters/ --no-coverage
 ```
 
-- [ ] **Step 3: Implement interface + adapter**
+- [x] **Step 3: Implement interface + adapter**
 ```typescript
 // frontend/src/adapters/wompi/wompi-tokenization.interface.ts
 export interface CardData { number: string; cvc: string; expMonth: string; expYear: string; cardHolder: string }
@@ -1598,12 +1598,12 @@ export class WompiTokenizationMock implements IWompiTokenizationAdapter {
 }
 ```
 
-- [ ] **Step 4: Run — expect PASS**
+- [x] **Step 4: Run — expect PASS**
 ```bash
 cd frontend && npx jest src/adapters/ --no-coverage
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 ```bash
 git add frontend/src/adapters/ && git commit -m "feat(frontend): Wompi tokenization adapter with mock (TDD)"
 ```
@@ -1614,7 +1614,7 @@ git add frontend/src/adapters/ && git commit -m "feat(frontend): Wompi tokenizat
 
 **Files:** all under `frontend/src/store/`
 
-- [ ] **Step 1: Write failing tests for checkout slice**
+- [x] **Step 1: Write failing tests for checkout slice**
 ```typescript
 // frontend/src/store/checkout/checkout.slice.spec.ts
 import checkoutReducer, { setStep, setProductId, setTransactionId, resetCheckout } from './checkout.slice'
@@ -1645,9 +1645,9 @@ describe('checkoutSlice', () => {
 })
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
-- [ ] **Step 3: Implement all three slices**
+- [x] **Step 3: Implement all three slices**
 
 ```typescript
 // frontend/src/store/checkout/checkout.slice.ts
@@ -1703,7 +1703,7 @@ export const { setTokenId, setAcceptanceToken, setAmounts, setResult, setLoading
 export default paymentSlice.reducer
 ```
 
-- [ ] **Step 4: Implement store with redux-persist**
+- [x] **Step 4: Implement store with redux-persist**
 ```typescript
 // frontend/src/store/index.ts
 import { configureStore } from '@reduxjs/toolkit'
@@ -1735,12 +1735,12 @@ export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 ```
 
-- [ ] **Step 5: Run all slice tests — expect PASS**
+- [x] **Step 5: Run all slice tests — expect PASS**
 ```bash
 cd frontend && npx jest src/store/ --no-coverage
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add frontend/src/store/ && git commit -m "feat(frontend): Redux slices — checkout, product, payment with persist (TDD)"
 ```
@@ -1751,7 +1751,7 @@ git add frontend/src/store/ && git commit -m "feat(frontend): Redux slices — c
 
 **Files:** `frontend/src/api/products.api.ts`, `customers.api.ts`, `transactions.api.ts`
 
-- [ ] **Step 1: Implement API functions**
+- [x] **Step 1: Implement API functions**
 ```typescript
 // frontend/src/api/products.api.ts
 const BASE = import.meta.env.VITE_API_URL
@@ -1820,7 +1820,7 @@ export const getTransaction = async (id: string): Promise<TransactionResult> => 
 }
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 ```bash
 git add frontend/src/api/ && git commit -m "feat(frontend): API layer — products, customers, transactions"
 ```
@@ -1877,7 +1877,7 @@ describe('ProductPage', () => {
 
 Note: Set up MSW in `frontend/src/mocks/server.ts` and `handlers.ts` before running this task.
 
-- [ ] **Step 2: Set up MSW**
+- [x] **Step 2: Set up MSW**
 ```typescript
 // frontend/src/mocks/server.ts
 import { setupServer } from 'msw/node'
@@ -1973,7 +1973,7 @@ git commit -m "feat(frontend): ProductPage with React 19 use() + Suspense (TDD)"
 
 **Files:** all under `frontend/src/components/CreditCardForm/`, `DeliveryForm/`, `CardNetworkLogo/`, `frontend/src/pages/CheckoutPage/`
 
-- [ ] **Step 1: Write failing tests for CreditCardForm**
+- [x] **Step 1: Write failing tests for CreditCardForm**
 ```typescript
 // frontend/src/components/CreditCardForm/CreditCardForm.spec.tsx
 import { render, screen, fireEvent } from '@testing-library/react'
@@ -2012,9 +2012,9 @@ describe('CreditCardForm', () => {
 })
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
-- [ ] **Step 3: Implement CardNetworkLogo**
+- [x] **Step 3: Implement CardNetworkLogo**
 ```typescript
 // frontend/src/components/CardNetworkLogo/CardNetworkLogo.tsx
 import { CardNetwork } from '../../utils/luhn'
@@ -2031,7 +2031,7 @@ export function CardNetworkLogo({ network }: { network: CardNetwork }) {
 }
 ```
 
-- [ ] **Step 4: Implement CreditCardForm** using `useActionState` for submission:
+- [x] **Step 4: Implement CreditCardForm** using `useActionState` for submission:
 ```typescript
 // frontend/src/components/CreditCardForm/CreditCardForm.tsx
 import { useState } from 'react'
@@ -2074,14 +2074,14 @@ export function CreditCardForm({ onSubmit }: { onSubmit: (data: CardData) => voi
 }
 ```
 
-- [ ] **Step 5: Implement DeliveryForm** (same pattern — fields: name, email, phone, address, city; validates all non-empty, email format; calls `onSubmit` with data)
+- [x] **Step 5: Implement DeliveryForm** (same pattern — fields: name, email, phone, address, city; validates all non-empty, email format; calls `onSubmit` with data)
 
-- [ ] **Step 6: Run — expect PASS**
+- [x] **Step 6: Run — expect PASS**
 ```bash
 cd frontend && npx jest src/components/ --no-coverage
 ```
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 ```bash
 git add frontend/src/components/ && git commit -m "feat(frontend): CreditCardForm, DeliveryForm, CardNetworkLogo (TDD)"
 ```
@@ -2094,7 +2094,7 @@ git add frontend/src/components/ && git commit -m "feat(frontend): CreditCardFor
 - Create: `frontend/src/components/SummaryBackdrop/SummaryBackdrop.tsx` + spec
 - Create: `frontend/src/store/payment/payment.thunks.ts`
 
-- [ ] **Step 1: Write failing tests**
+- [x] **Step 1: Write failing tests**
 ```typescript
 // frontend/src/components/SummaryBackdrop/SummaryBackdrop.spec.tsx
 import { render, screen, fireEvent } from '@testing-library/react'
@@ -2123,9 +2123,9 @@ describe('SummaryBackdrop', () => {
 })
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 
-- [ ] **Step 3: Implement SummaryBackdrop**
+- [x] **Step 3: Implement SummaryBackdrop**
 ```typescript
 // frontend/src/components/SummaryBackdrop/SummaryBackdrop.tsx
 import { formatCOP } from '../../utils/currency'
@@ -2159,7 +2159,7 @@ export function SummaryBackdrop({ amounts, onConfirm, onBack, loading }: {
 }
 ```
 
-- [ ] **Step 4: Implement payment thunk**
+- [x] **Step 4: Implement payment thunk**
 ```typescript
 // frontend/src/store/payment/payment.thunks.ts
 import { createAsyncThunk } from '@reduxjs/toolkit'
@@ -2184,12 +2184,12 @@ export const processPayment = createAsyncThunk(
 )
 ```
 
-- [ ] **Step 5: Run — expect PASS**
+- [x] **Step 5: Run — expect PASS**
 ```bash
 cd frontend && npx jest src/components/SummaryBackdrop/ src/store/payment/ --no-coverage
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add frontend/src/components/SummaryBackdrop/ frontend/src/store/payment/payment.thunks.ts
 git commit -m "feat(frontend): SummaryBackdrop + payment thunk (TDD)"
