@@ -8,7 +8,9 @@ Content-Type: application/json
 {
   "email": "test@example.com",
   "name": "Juan Perez",
-  "phone": "3001234567"
+  "phone": "3001234567",
+  "address": "Calle 123 # 45-67",
+  "city": "Bogotá"
 }
 
 ### Error de validación (Email inválido)
