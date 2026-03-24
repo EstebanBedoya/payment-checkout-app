@@ -1,120 +1,67 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import { CreditCardForm } from './components/CreditCardForm/CreditCardForm'
+import { DeliveryForm } from './components/DeliveryForm/DeliveryForm'
+import { SummaryBackdrop } from './components/SummaryBackdrop/SummaryBackdrop'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showSummary, setShowSummary] = useState(false)
+
+  const dummyAmounts = {
+    productPrice: 15000000,
+    baseFee: 300000,
+    deliveryFee: 500000,
+    total: 15800000
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
+      <header style={{ marginBottom: '4rem', textAlign: 'center' }}>
+        <h1 className="display-text" style={{ fontSize: '3rem', marginBottom: '1rem' }}>Component Gallery</h1>
+        <p style={{ color: 'var(--text-muted)' }}>Editorial Financial Premium — Design System Preview</p>
+      </header>
+
+      <section style={{ marginBottom: '4rem' }}>
+        <h2 style={{ marginBottom: '2rem', borderBottom: '1px solid var(--ghost-border)', paddingBottom: '0.5rem' }}>1. Payment & Card Detection</h2>
+        <div style={{ backgroundColor: 'var(--surface)', padding: '2rem', borderRadius: '1.5rem' }}>
+          <CreditCardForm onSubmit={(data) => console.log('Card Data:', data)} />
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
+      </section>
+
+      <section style={{ marginBottom: '4rem' }}>
+        <h2 style={{ marginBottom: '2rem', borderBottom: '1px solid var(--ghost-border)', paddingBottom: '0.5rem' }}>2. Delivery Information</h2>
+        <div style={{ backgroundColor: 'var(--surface)', padding: '2rem', borderRadius: '1.5rem' }}>
+          <DeliveryForm onSubmit={(data) => console.log('Delivery Data:', data)} />
         </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+      </section>
+
+      <section style={{ marginBottom: '4rem', textAlign: 'center' }}>
+        <h2 style={{ marginBottom: '2rem', borderBottom: '1px solid var(--ghost-border)', paddingBottom: '0.5rem' }}>3. Summary & Backdrop</h2>
+        <button 
+          className="btn-primary" 
+          onClick={() => setShowSummary(true)}
+          style={{ maxWidth: '300px', margin: '0 auto' }}
         >
-          Count is {count}
+          Open Summary Backdrop
         </button>
       </section>
 
-      <div className="ticks"></div>
+      {showSummary && (
+        <SummaryBackdrop 
+          amounts={dummyAmounts} 
+          onConfirm={() => {
+            alert('Payment Confirmed!');
+            setShowSummary(false);
+          }} 
+          onBack={() => setShowSummary(false)} 
+          loading={false}
+        />
+      )}
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <footer style={{ marginTop: '8rem', textAlign: 'center', opacity: 0.5, fontSize: '0.875rem' }}>
+        Built with Antigravity • Payment Checkout App
+      </footer>
+    </div>
   )
 }
 

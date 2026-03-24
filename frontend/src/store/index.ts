@@ -1,10 +1,20 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
-import { combineReducers } from 'redux'
 import checkoutReducer from './checkout/checkout.slice'
 import productReducer from './product/product.slice'
 import paymentReducer from './payment/payment.slice'
+
+const storage = {
+  getItem: (key: string) => Promise.resolve(localStorage.getItem(key)),
+  setItem: (key: string, value: string) => {
+    localStorage.setItem(key, value)
+    return Promise.resolve()
+  },
+  removeItem: (key: string) => {
+    localStorage.removeItem(key)
+    return Promise.resolve()
+  },
+}
 
 const paymentPersistConfig = { key: 'payment', storage, whitelist: ['tokenId'] }
 const checkoutPersistConfig = { key: 'checkout', storage, whitelist: ['step', 'productId'] }

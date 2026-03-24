@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 interface CheckoutState { step: number; productId: string | null; transactionId: string | null }
 const initialState: CheckoutState = { step: 1, productId: null, transactionId: null }

@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { TransactionResult } from '../../api/transactions.api'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import type { TransactionResult } from '../../api/transactions.api'
 
 interface PaymentState {
   tokenId: string | null

@@ -1,14 +1,13 @@
 .delivery-form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: var(--spacing-default);
   width: 100%;
-  max-width: 400px;
 }
 
 .delivery-form .row-group {
   display: flex;
-  gap: var(--spacing-3);
+  gap: var(--spacing-default);
   width: 100%;
 }
 
@@ -17,21 +16,26 @@
 }
 
 .delivery-form input {
-  background-color: var(--surface-low);
+  background-color: var(--surface);
   border: none;
-  border-bottom: 1px solid var(--outline-variant);
+  border-bottom: 2px solid var(--ghost-border);
   color: var(--text-main);
-  padding: var(--spacing-3);
+  padding: var(--spacing-default);
   font-size: 1rem;
-  min-height: 44px;
   outline: none;
-  transition: border-bottom-color 0.2s ease;
+  transition: border-bottom-color 0.2s ease, background-color 0.2s ease;
   width: 100%;
   box-sizing: border-box;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.delivery-form input::placeholder {
+  color: var(--text-muted);
 }
 
 .delivery-form input:focus {
   border-bottom-color: var(--secondary);
+  background-color: var(--surface-high);
 }
 
 .delivery-form input.input-error {

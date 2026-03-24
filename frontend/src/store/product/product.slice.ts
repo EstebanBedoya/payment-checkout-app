@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Product } from '../../api/products.api'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import type { Product } from '../../api/products.api'
 
 interface ProductState {
   product: Product | null

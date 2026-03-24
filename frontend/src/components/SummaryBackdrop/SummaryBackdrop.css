@@ -4,8 +4,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
+  background-color: rgba(15, 14, 13, 0.8);
+  backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -14,10 +14,10 @@
 }
 
 .backdrop-sheet {
-  background-color: var(--off-white);
-  color: #1b1918;
+  background-color: var(--surface-highest); /* #fafafa */
+  color: var(--text-inverse); /* #000000 */
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-  padding: var(--spacing-6) var(--spacing-4) var(--spacing-10);
+  padding: var(--spacing-struct);
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
@@ -31,16 +31,16 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-top: 0;
-  margin-bottom: var(--spacing-4);
+  margin-bottom: var(--spacing-struct);
   text-align: center;
 }
 
 .summary-content {
   background-color: #ffffff;
-  border-radius: var(--radius-sm);
-  padding: var(--spacing-4);
-  margin-bottom: var(--spacing-6);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-default);
+  margin-bottom: var(--spacing-struct);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.05);
 }
 
 .summary-table {
@@ -49,7 +49,7 @@
 }
 
 .summary-table td {
-  padding: var(--spacing-2) 0;
+  padding: var(--spacing-tight) 0;
   font-size: 1rem;
 }
 
@@ -58,26 +58,32 @@
 }
 
 .total-row td {
-  padding-top: var(--spacing-3);
-  border-top: 1px dashed #d1cfce;
-  font-size: 1.125rem;
+  padding-top: var(--spacing-default);
+  border-top: 1px dashed var(--text-muted);
+  font-size: 1.25rem;
+  font-family: var(--font-display);
 }
 
 .backdrop-actions {
   display: flex;
-  gap: var(--spacing-3);
+  gap: var(--spacing-default);
 }
 
 .btn-secondary {
   background: transparent;
-  color: #1b1918;
-  border: 1px solid #1b1918;
-  border-radius: var(--radius-xl);
-  min-height: var(--spacing-10);
-  padding: 0 var(--spacing-6);
+  color: var(--text-inverse);
+  border: 1px solid var(--text-muted);
+  border-radius: var(--radius-full);
+  min-height: 3.5rem;
+  padding: 0 var(--spacing-struct);
+  font-family: var(--font-body);
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-secondary:hover:not(:disabled) {
