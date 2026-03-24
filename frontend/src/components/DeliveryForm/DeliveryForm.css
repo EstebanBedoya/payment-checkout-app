@@ -1,0 +1,39 @@
+.delivery-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  width: 100%;
+  max-width: 400px;
+}
+
+.delivery-form .row-group {
+  display: flex;
+  gap: var(--spacing-3);
+  width: 100%;
+}
+
+.delivery-form .row-group .form-group {
+  flex: 1;
+}
+
+.delivery-form input {
+  background-color: var(--surface-low);
+  border: none;
+  border-bottom: 1px solid var(--outline-variant);
+  color: var(--text-main);
+  padding: var(--spacing-3);
+  font-size: 1rem;
+  min-height: 44px;
+  outline: none;
+  transition: border-bottom-color 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.delivery-form input:focus {
+  border-bottom-color: var(--secondary);
+}
+
+.delivery-form input.input-error {
+  border-bottom-color: var(--error);
+}
