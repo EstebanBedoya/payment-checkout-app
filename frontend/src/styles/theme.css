@@ -1,0 +1,39 @@
+:root {
+  --bg-base: #0f0e0d;
+  --surface-container: #1b1918;
+  --surface-low: #151312;
+  --primary: #d9f95b;
+  --primary-dim: #cbea4e;
+  --secondary: #b1f3af;
+  --error: #ff7351;
+  --text-main: #ffffff;
+  --text-muted: #afaaa8;
+  --outline-variant: #4a4746;
+  --off-white: #FAFAFA;
+
+  --font-display: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --radius-xl: 3rem;
+  --radius-sm: 0.5rem;
+
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 1rem;
+  --spacing-4: 1.5rem;
+  --spacing-6: 2rem;
+  --spacing-10: 3.5rem;
+  --spacing-16: 5.5rem;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-base);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
