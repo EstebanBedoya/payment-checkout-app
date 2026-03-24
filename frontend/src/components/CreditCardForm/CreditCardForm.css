@@ -1,0 +1,110 @@
+.credit-card-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.input-with-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--surface-low);
+  border-bottom: 1px solid var(--outline-variant);
+  min-height: 44px;
+  transition: border-bottom-color 0.2s ease;
+}
+
+.input-with-logo:focus-within {
+  border-bottom-color: var(--secondary);
+}
+
+.input-with-logo.input-error {
+  border-bottom-color: var(--error);
+}
+
+.input-with-logo input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: 1rem;
+  outline: none;
+}
+
+.credit-card-form > .form-group > input,
+.expiry-row .form-group input {
+  background-color: var(--surface-low);
+  border: none;
+  border-bottom: 1px solid var(--outline-variant);
+  color: var(--text-main);
+  padding: var(--spacing-3);
+  font-size: 1rem;
+  min-height: 44px;
+  outline: none;
+  transition: border-bottom-color 0.2s ease;
+}
+
+.credit-card-form > .form-group > input:focus,
+.expiry-row .form-group input:focus {
+  border-bottom-color: var(--secondary);
+}
+
+.credit-card-form > .form-group > input.input-error,
+.expiry-row .form-group input.input-error {
+  border-bottom-color: var(--error);
+}
+
+.expiry-row {
+  display: flex;
+  gap: var(--spacing-3);
+  width: 100%;
+}
+
+.expiry-row .form-group {
+  flex: 1;
+}
+
+.error-text {
+  color: var(--error);
+  font-size: 0.85rem;
+  margin-top: var(--spacing-1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dim));
+  color: #1e2600;
+  border: none;
+  border-radius: var(--radius-xl);
+  min-height: var(--spacing-10);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: var(--spacing-6);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  /* Glow effect */
+  box-shadow: 0 4px 48px rgba(217, 249, 91, 0.15);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 4px 48px rgba(217, 249, 91, 0.3);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
