@@ -147,20 +147,20 @@ vite.config.ts
 
 **Files:** `backend/` (new project), `backend/.env.example`, `backend/jest.config.ts`
 
-- [ ] **Step 1: Create project**
+- [x] **Step 1: Create project**
 ```bash
 cd /Users/ebedoya/Projects/wompi-test/payment-checkout-app
 npx @nestjs/cli new backend --package-manager npm --skip-git
 cd backend
 ```
 
-- [ ] **Step 2: Install runtime dependencies**
+- [x] **Step 2: Install runtime dependencies**
 ```bash
 npm install @prisma/client @nestjs/config class-validator class-transformer helmet @nestjs/swagger swagger-ui-express uuid
 npm install -D prisma @types/uuid ts-jest jest @types/jest supertest @types/supertest nock @types/nock
 ```
 
-- [ ] **Step 3: Replace `backend/jest.config.ts`**
+- [x] **Step 3: Replace `backend/jest.config.ts`**
 ```typescript
 import type { Config } from 'jest'
 const config: Config = {
@@ -176,7 +176,7 @@ const config: Config = {
 export default config
 ```
 
-- [ ] **Step 4: Create `backend/.env.example`**
+- [x] **Step 4: Create `backend/.env.example`**
 ```
 DATABASE_URL=postgresql://user:password@localhost:5432/checkout_db
 WOMPI_API_URL=https://api-sandbox.co.uat.wompi.dev/v1
@@ -189,14 +189,14 @@ PORT=3001
 FRONTEND_URL=http://localhost:5173
 ```
 
-- [ ] **Step 5: Copy and fill `.env`, run tests**
+- [x] **Step 5: Copy and fill `.env`, run tests**
 ```bash
 cp .env.example .env
 npm test
 ```
 Expected: boilerplate tests pass.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add backend/ && git commit -m "feat(backend): scaffold NestJS project"
 ```
@@ -211,7 +211,7 @@ git add backend/ && git commit -m "feat(backend): scaffold NestJS project"
 - Create: `backend/src/shared/use-case.interface.ts`
 - Create: `backend/src/shared/__tests__/result.spec.ts`
 
-- [ ] **Step 1: Write failing test**
+- [x] **Step 1: Write failing test**
 ```typescript
 // backend/src/shared/__tests__/result.spec.ts
 import { ok, err } from '../result'
@@ -235,12 +235,12 @@ describe('Result', () => {
 })
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 ```bash
 cd backend && npx jest shared/__tests__/result.spec.ts --no-coverage
 ```
 
-- [ ] **Step 3: Implement `result.ts`**
+- [x] **Step 3: Implement `result.ts`**
 ```typescript
 // backend/src/shared/result.ts
 export type Result<T, E> = Ok<T> | Err<E>
@@ -263,7 +263,7 @@ export const ok = <T>(value: T): Ok<T> => new Ok(value)
 export const err = <E>(error: E): Err<E> => new Err(error)
 ```
 
-- [ ] **Step 4: Implement `domain-errors.ts`**
+- [x] **Step 4: Implement `domain-errors.ts`**
 ```typescript
 // backend/src/shared/domain-errors.ts
 export type DomainErrorCode =
@@ -288,7 +288,7 @@ export const Errors = {
 }
 ```
 
-- [ ] **Step 5: Implement `use-case.interface.ts`**
+- [x] **Step 5: Implement `use-case.interface.ts`**
 ```typescript
 // backend/src/shared/use-case.interface.ts
 import { Result } from './result'
@@ -298,12 +298,12 @@ export interface UseCase<I, O> {
 }
 ```
 
-- [ ] **Step 6: Run — expect PASS**
+- [x] **Step 6: Run — expect PASS**
 ```bash
 cd backend && npx jest shared/__tests__/result.spec.ts --no-coverage
 ```
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 ```bash
 git add backend/src/shared/ && git commit -m "feat(backend): add ROP primitives — Result<T,E>, DomainError, UseCase"
 ```
@@ -314,20 +314,20 @@ git add backend/src/shared/ && git commit -m "feat(backend): add ROP primitives 
 
 **Files:** `backend/prisma/schema.prisma`, `backend/prisma/seed.ts`
 
-- [ ] **Step 1: Initialize Prisma**
+- [x] **Step 1: Initialize Prisma**
 ```bash
 cd backend && npx prisma init
 ```
 
-- [ ] **Step 2: Write `prisma/schema.prisma`** (full content from `docs/spec.md` §7 — copy exactly as written there)
+- [x] **Step 2: Write `prisma/schema.prisma`** (full content from `docs/spec.md` §7 — copy exactly as written there)
 
-- [ ] **Step 3: Run migration**
+- [x] **Step 3: Run migration**
 ```bash
 cd backend && npx prisma migrate dev --name init
 ```
 Expected: migration applied, Prisma Client generated.
 
-- [ ] **Step 4: Write `prisma/seed.ts`**
+- [x] **Step 4: Write `prisma/seed.ts`**
 ```typescript
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
@@ -356,13 +356,13 @@ Add to `backend/package.json`:
 "prisma": { "seed": "ts-node prisma/seed.ts" }
 ```
 
-- [ ] **Step 5: Run seed**
+- [x] **Step 5: Run seed**
 ```bash
 cd backend && npx prisma db seed
 ```
 Expected: "Seed complete ✓"
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add backend/prisma/ backend/package.json && git commit -m "feat(backend): Prisma schema, migration init, seed product"
 ```
@@ -379,7 +379,7 @@ git add backend/prisma/ backend/package.json && git commit -m "feat(backend): Pr
 - Create: `backend/src/modules/products/application/use-cases/decrement-stock.use-case.ts`
 - Create: `backend/src/modules/products/__tests__/get-product.use-case.spec.ts`
 
-- [ ] **Step 1: Write failing tests**
+- [x] **Step 1: Write failing tests**
 ```typescript
 // backend/src/modules/products/__tests__/get-product.use-case.spec.ts
 import { GetProductUseCase } from '../application/use-cases/get-product.use-case'
@@ -414,12 +414,12 @@ describe('GetProductUseCase', () => {
 })
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 ```bash
 cd backend && npx jest products/__tests__/get-product.use-case.spec.ts --no-coverage
 ```
 
-- [ ] **Step 3: Implement domain**
+- [x] **Step 3: Implement domain**
 ```typescript
 // backend/src/modules/products/domain/product.entity.ts
 export interface Product {
@@ -438,7 +438,7 @@ export interface IProductRepository {
 }
 ```
 
-- [ ] **Step 4: Implement use cases**
+- [x] **Step 4: Implement use cases**
 ```typescript
 // backend/src/modules/products/application/use-cases/get-product.use-case.ts
 import { Injectable, Inject } from '@nestjs/common'
@@ -498,12 +498,12 @@ export class DecrementStockUseCase {
 }
 ```
 
-- [ ] **Step 5: Run — expect PASS**
+- [x] **Step 5: Run — expect PASS**
 ```bash
 cd backend && npx jest products/__tests__/ --no-coverage
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add backend/src/modules/products/ && git commit -m "feat(backend): products domain, ports, use cases (TDD)"
 ```
@@ -518,7 +518,7 @@ git add backend/src/modules/products/ && git commit -m "feat(backend): products 
 - Create: `backend/src/modules/products/infrastructure/products.module.ts`
 - Create: `backend/src/modules/products/__tests__/products.controller.spec.ts`
 
-- [ ] **Step 1: Write failing controller tests**
+- [x] **Step 1: Write failing controller tests**
 ```typescript
 // backend/src/modules/products/__tests__/products.controller.spec.ts
 import { Test } from '@nestjs/testing'
@@ -565,12 +565,12 @@ describe('ProductsController', () => {
 })
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 ```bash
 cd backend && npx jest products/__tests__/products.controller.spec.ts --no-coverage
 ```
 
-- [ ] **Step 3: Implement repository**
+- [x] **Step 3: Implement repository**
 ```typescript
 // backend/src/modules/products/infrastructure/prisma-product.repository.ts
 import { Injectable } from '@nestjs/common'
@@ -612,7 +612,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
 }
 ```
 
-- [ ] **Step 4: Implement controller**
+- [x] **Step 4: Implement controller**
 ```typescript
 // backend/src/modules/products/infrastructure/products.controller.ts
 import { Controller, Get, Param, HttpException, HttpStatus } from '@nestjs/common'
@@ -646,7 +646,7 @@ export class ProductsController {
 }
 ```
 
-- [ ] **Step 5: Wire module**
+- [x] **Step 5: Wire module**
 ```typescript
 // backend/src/modules/products/infrastructure/products.module.ts
 import { Module } from '@nestjs/common'
@@ -669,12 +669,12 @@ import { DecrementStockUseCase } from '../application/use-cases/decrement-stock.
 export class ProductsModule {}
 ```
 
-- [ ] **Step 6: Run — expect PASS**
+- [x] **Step 6: Run — expect PASS**
 ```bash
 cd backend && npx jest products/__tests__/products.controller.spec.ts --no-coverage
 ```
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 ```bash
 git add backend/src/modules/products/infrastructure/ backend/src/prisma/
 git commit -m "feat(backend): products repository, controller, module"
@@ -686,7 +686,7 @@ git commit -m "feat(backend): products repository, controller, module"
 
 **Files:** all under `backend/src/modules/customers/`
 
-- [ ] **Step 1: Write failing test**
+- [x] **Step 1: Write failing test**
 ```typescript
 // backend/src/modules/customers/__tests__/upsert-customer.use-case.spec.ts
 import { UpsertCustomerUseCase } from '../application/use-cases/upsert-customer.use-case'
@@ -715,12 +715,12 @@ describe('UpsertCustomerUseCase', () => {
 })
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 ```bash
 cd backend && npx jest customers/__tests__/ --no-coverage
 ```
 
-- [ ] **Step 3: Implement domain**
+- [x] **Step 3: Implement domain**
 ```typescript
 // backend/src/modules/customers/domain/customer.entity.ts
 export interface Customer {
@@ -737,7 +737,7 @@ export interface ICustomerRepository {
 }
 ```
 
-- [ ] **Step 4: Implement use case + controller + module** following the same pattern as products (upsert by email, validate email format with regex before calling repo, return `err(Errors.validationError('Invalid email'))` on bad input)
+- [x] **Step 4: Implement use case + controller + module** following the same pattern as products (upsert by email, validate email format with regex before calling repo, return `err(Errors.validationError('Invalid email'))` on bad input)
 
 ```typescript
 // backend/src/modules/customers/application/use-cases/upsert-customer.use-case.ts
@@ -765,12 +765,12 @@ export class UpsertCustomerUseCase {
 
 Controller maps: `Ok → 201`, `Err(VALIDATION_ERROR) → 400`.
 
-- [ ] **Step 5: Run — expect PASS**
+- [x] **Step 5: Run — expect PASS**
 ```bash
 cd backend && npx jest customers/__tests__/ --no-coverage
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add backend/src/modules/customers/ && git commit -m "feat(backend): customers module — upsert use case, controller (TDD)"
 ```
@@ -786,7 +786,7 @@ git add backend/src/modules/customers/ && git commit -m "feat(backend): customer
 - Create: `backend/src/modules/payment/infrastructure/adapters/wompi-payment.adapter.mock.ts`
 - Create: `backend/src/modules/payment/__tests__/wompi-payment.adapter.spec.ts`
 
-- [ ] **Step 1: Write failing tests for adapter**
+- [x] **Step 1: Write failing tests for adapter**
 ```typescript
 // backend/src/modules/payment/__tests__/wompi-payment.adapter.spec.ts
 import nock from 'nock'
@@ -824,12 +824,12 @@ describe('WompiPaymentAdapter', () => {
 })
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 ```bash
 cd backend && npx jest payment/__tests__/ --no-coverage
 ```
 
-- [ ] **Step 3: Implement types + port**
+- [x] **Step 3: Implement types + port**
 ```typescript
 // backend/src/modules/payment/domain/payment.types.ts
 export interface CreateTransactionParams {
@@ -856,7 +856,7 @@ export interface IPaymentGateway {
 }
 ```
 
-- [ ] **Step 4: Implement real adapter**
+- [x] **Step 4: Implement real adapter**
 ```typescript
 // backend/src/modules/payment/infrastructure/adapters/wompi-payment.adapter.ts
 import { Injectable } from '@nestjs/common'
@@ -918,7 +918,7 @@ export class WompiPaymentAdapter implements IPaymentGateway {
 }
 ```
 
-- [ ] **Step 5: Implement mock adapter**
+- [x] **Step 5: Implement mock adapter**
 ```typescript
 // backend/src/modules/payment/infrastructure/adapters/wompi-payment.adapter.mock.ts
 import { IPaymentGateway } from '../../domain/payment-gateway.port'
@@ -940,12 +940,12 @@ export class WompiPaymentAdapterMock implements IPaymentGateway {
 }
 ```
 
-- [ ] **Step 6: Run — expect PASS**
+- [x] **Step 6: Run — expect PASS**
 ```bash
 cd backend && npx jest payment/__tests__/ --no-coverage
 ```
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 ```bash
 git add backend/src/modules/payment/ && git commit -m "feat(backend): payment port, Wompi adapter with mock (TDD)"
 ```
@@ -961,7 +961,7 @@ git add backend/src/modules/payment/ && git commit -m "feat(backend): payment po
 - Create: `backend/src/modules/transactions/application/use-cases/get-transaction.use-case.ts`
 - Create: `backend/src/modules/transactions/__tests__/create-transaction.use-case.spec.ts`
 
-- [ ] **Step 1: Write failing tests (ALL branches — 100% coverage required)**
+- [x] **Step 1: Write failing tests (ALL branches — 100% coverage required)**
 ```typescript
 // backend/src/modules/transactions/__tests__/create-transaction.use-case.spec.ts
 import { CreateTransactionUseCase } from '../application/use-cases/create-transaction.use-case'
@@ -1034,12 +1034,12 @@ describe('CreateTransactionUseCase', () => {
 })
 ```
 
-- [ ] **Step 2: Run — expect FAIL**
+- [x] **Step 2: Run — expect FAIL**
 ```bash
 cd backend && npx jest transactions/__tests__/create-transaction.use-case.spec.ts --no-coverage
 ```
 
-- [ ] **Step 3: Implement domain**
+- [x] **Step 3: Implement domain**
 ```typescript
 // backend/src/modules/transactions/domain/transaction.entity.ts
 export type TransactionStatus = 'PENDING' | 'APPROVED' | 'DECLINED' | 'ERROR'
@@ -1062,7 +1062,7 @@ export interface ITransactionRepository {
 }
 ```
 
-- [ ] **Step 4: Implement CreateTransactionUseCase**
+- [x] **Step 4: Implement CreateTransactionUseCase**
 ```typescript
 // backend/src/modules/transactions/application/use-cases/create-transaction.use-case.ts
 import { Injectable, Inject } from '@nestjs/common'
