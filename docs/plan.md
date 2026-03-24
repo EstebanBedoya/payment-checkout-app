@@ -1353,21 +1353,21 @@ git add backend/src/main.ts && git commit -m "feat(backend): add Helmet security
 
 **Files:** `frontend/` (new project), config files
 
-- [ ] **Step 1: Create Vite project**
+- [x] **Step 1: Create Vite project**
 ```bash
 cd /Users/ebedoya/Projects/wompi-test/payment-checkout-app
-npm create vite@latest frontend -- --template react-ts
+pnpm create vite@latest frontend -- --template react-ts
 cd frontend
 ```
 
-- [ ] **Step 2: Install dependencies**
+- [x] **Step 2: Install dependencies**
 ```bash
-npm install @reduxjs/toolkit react-redux redux-persist
-npm install react-router-dom
-npm install -D jest @types/jest ts-jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom @testing-library/user-event msw identity-obj-proxy
+pnpm install @reduxjs/toolkit react-redux redux-persist
+pnpm install react-router-dom
+pnpm install -D jest @types/jest ts-jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom @testing-library/user-event msw identity-obj-proxy
 ```
 
-- [ ] **Step 3: Create `frontend/jest.config.ts`**
+- [x] **Step 3: Create `frontend/jest.config.ts`**
 ```typescript
 import type { Config } from 'jest'
 const config: Config = {
@@ -1381,27 +1381,27 @@ const config: Config = {
 export default config
 ```
 
-- [ ] **Step 4: Create `frontend/jest.setup.ts`**
+- [x] **Step 4: Create `frontend/jest.setup.ts`**
 ```typescript
 import '@testing-library/jest-dom'
 ```
 
-- [ ] **Step 5: Create `frontend/.env.example`**
+- [x] **Step 5: Create `frontend/.env.example`**
 ```
 VITE_API_URL=http://localhost:3001/api/v1
 VITE_WOMPI_PUBLIC_KEY=pub_stagtest_g2u0HQd3ZMh05hsSgTS2lUV8t3s4mOt7
 VITE_WOMPI_API_URL=https://api-sandbox.co.uat.wompi.dev/v1
 ```
 
-- [ ] **Step 6: Copy `.env`, run dev server**
+- [x] **Step 6: Copy `.env`, run dev server**
 ```bash
-cp .env.example .env && npm run dev
+cp .env.example .env && pnpm run dev
 ```
 Expected: Vite dev server running at `http://localhost:5173`.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 ```bash
-git add frontend/ && git commit -m "feat(frontend): scaffold React 19 + Vite + Redux Toolkit"
+git add frontend/ && git commit -m "feat(frontend): scaffold React 19 + Vite + Redux Toolkit with pnpm"
 ```
 
 ---

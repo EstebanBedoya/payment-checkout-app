@@ -36,8 +36,10 @@
     "jest-environment-jsdom": "^30.3.0",
     "msw": "^2.12.14",
     "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.2",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.57.0",
+    "undici": "^7.24.5",
     "vite": "^8.0.1"
   }
 }
