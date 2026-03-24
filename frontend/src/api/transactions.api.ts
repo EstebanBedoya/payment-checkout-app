@@ -1,4 +1,5 @@
-const BASE = import.meta.env.VITE_API_URL
+// @ts-ignore
+const BASE = typeof process !== 'undefined' ? process.env.VITE_API_URL || 'http://localhost:3000' : import.meta.env.VITE_API_URL
 
 export interface CreateTransactionPayload {
   customerId: string; productId: string; cardTokenId: string
