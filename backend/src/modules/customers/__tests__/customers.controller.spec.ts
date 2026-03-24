@@ -32,4 +32,9 @@ describe('CustomersController', () => {
     mockUpsert.execute.mockResolvedValue(err(Errors.validationError('Invalid email format')))
     await expect(controller.upsert({ ...input, email: 'bad' })).rejects.toMatchObject({ status: 400 })
   })
+
+  it('POST /customers throws 500 on unexpected error', async () => {
+    mockUpsert.execute.mockResolvedValue(err(Errors.paymentGatewayUnavailable()))
+    await expect(controller.upsert(input)).rejects.toMatchObject({ status: 500 })
+  })
 })
