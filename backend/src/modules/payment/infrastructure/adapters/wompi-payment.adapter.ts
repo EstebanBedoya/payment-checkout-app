@@ -48,7 +48,7 @@ export class WompiPaymentAdapter implements IPaymentGateway {
             token: params.cardTokenId,
           },
           acceptance_token: params.acceptanceToken,
-          signature: { integrity: integrityHash },
+          signature: integrityHash,
         }),
       })
 

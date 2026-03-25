@@ -20,9 +20,6 @@ importers:
       react-redux:
         specifier: ^9.2.0
         version: 9.2.0(@types/react@19.2.14)(react@19.2.4)(redux@5.0.1)
-      react-router-dom:
-        specifier: ^7.13.2
-        version: 7.13.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       redux-persist:
         specifier: ^6.0.0
         version: 6.0.0(react@19.2.4)(redux@5.0.1)
@@ -2067,23 +2064,6 @@ packages:
       redux:
         optional: true
 
-  react-router-dom@7.13.2:
-    resolution: {integrity: sha512-aR7SUORwTqAW0JDeiWF07e9SBE9qGpByR9I8kJT5h/FrBKxPMS6TiC7rmVO+gC0q52Bx7JnjWe8Z1sR9faN4YA==}
-    engines: {node: '>=20.0.0'}
-    peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
-
-  react-router@7.13.2:
-    resolution: {integrity: sha512-tX1Aee+ArlKQP+NIUd7SE6Li+CiGKwQtbS+FfRxPX6Pe4vHOo6nr9d++u5cwg+Z8K/x8tP+7qLmujDtfrAoUJA==}
-    engines: {node: '>=20.0.0'}
-    peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-
   react@19.2.4:
     resolution: {integrity: sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ==}
     engines: {node: '>=0.10.0'}
@@ -2157,9 +2137,6 @@ packages:
     resolution: {integrity: sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==}
     engines: {node: '>=10'}
     hasBin: true
-
-  set-cookie-parser@2.7.2:
-    resolution: {integrity: sha512-oeM1lpU/UvhTxw+g3cIfxXHyJRc/uidd3yK1P242gzHds0udQBYzs3y8j4gCCW+ZJ7ad0yctld8RYO+bdurlvw==}
 
   shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
@@ -4759,20 +4736,6 @@ snapshots:
       '@types/react': 19.2.14
       redux: 5.0.1
 
-  react-router-dom@7.13.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
-    dependencies:
-      react: 19.2.4
-      react-dom: 19.2.4(react@19.2.4)
-      react-router: 7.13.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-
-  react-router@7.13.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
-    dependencies:
-      cookie: 1.1.1
-      react: 19.2.4
-      set-cookie-parser: 2.7.2
-    optionalDependencies:
-      react-dom: 19.2.4(react@19.2.4)
-
   react@19.2.4: {}
 
   redent@3.0.0:
@@ -4840,8 +4803,6 @@ snapshots:
   semver@6.3.1: {}
 
   semver@7.7.4: {}
-
-  set-cookie-parser@2.7.2: {}
 
   shebang-command@2.0.0:
     dependencies:

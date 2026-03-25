@@ -10,10 +10,11 @@ import { SummaryBackdrop } from '../../components/SummaryBackdrop/SummaryBackdro
 import { upsertCustomer } from '../../api/customers.api'
 import { fetchProduct } from '../../api/products.api'
 import { WompiTokenizationAdapter } from '../../adapters/wompi/wompi-tokenization.adapter'
+import { WOMPI_PUBLIC_KEY, WOMPI_API_URL } from '../../utils/env'
 
 const wompiAdapter = new WompiTokenizationAdapter({
-  publicKey: import.meta.env.VITE_WOMPI_PUBLIC_KEY ?? 'pub_test',
-  apiUrl: import.meta.env.VITE_WOMPI_API_URL ?? 'https://api-sandbox.co.uat.wompi.dev/v1',
+  publicKey: WOMPI_PUBLIC_KEY,
+  apiUrl: WOMPI_API_URL,
 })
 
 const BASE_FEE = 300000
@@ -47,7 +48,7 @@ export function CheckoutPage() {
 
   const handleCardSubmit = async (data: CardData) => {
     setCardData(data)
-    dispatch(setStep(2.5 as any))
+    dispatch(setStep(2.5))
   }
 
   const handleDeliverySubmit = async (data: CustomerData) => {

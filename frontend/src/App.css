@@ -10,6 +10,14 @@
   padding: var(--spacing-struct);
 }
 
+@media (max-width: 768px) {
+  .page {
+    justify-content: flex-start;
+    padding: var(--spacing-default);
+    min-height: auto;
+  }
+}
+
 /* ===================================================
    StatusPage
    =================================================== */

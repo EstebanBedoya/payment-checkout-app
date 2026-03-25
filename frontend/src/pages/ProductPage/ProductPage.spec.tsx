@@ -12,12 +12,15 @@ jest.mock('../../api/products.api', () => ({
 import { fetchProducts } from '../../api/products.api'
 import { ProductPage } from './ProductPage'
 
-const makeStore = () => configureStore({ 
-  reducer: { 
-    checkout: checkoutReducer, 
-    product: productReducer, 
-    payment: paymentReducer 
-  } 
+const makeStore = (productId: string | null = 'p1') => configureStore({
+  reducer: {
+    checkout: checkoutReducer,
+    product: productReducer,
+    payment: paymentReducer
+  },
+  preloadedState: {
+    checkout: { step: 1, productId, transactionId: null },
+  }
 })
 
 const product = { 

@@ -8,6 +8,7 @@ import { ProductPage } from './pages/ProductPage/ProductPage'
 import { CheckoutPage } from './pages/CheckoutPage/CheckoutPage'
 import { StatusPage } from './pages/StatusPage/StatusPage'
 import { Header } from './components/Header/Header'
+import { Stepper } from './components/Stepper/Stepper'
 import './App.css'
 
 function App() {
@@ -37,29 +38,14 @@ function App() {
     dispatch(resetPayment())
   }
 
-  if (step === 4) return (
-    <div className="app-container">
-      <Header />
-      <main className="page">
-        <StatusPage onRestart={handleRestart} />
-      </main>
-    </div>
-  )
-  
-  if (step >= 2 && step <= 3) return (
-    <div className="app-container">
-      <Header />
-      <main className="page">
-        <CheckoutPage />
-      </main>
-    </div>
-  )
-
   return (
     <div className="app-container">
       <Header />
+      <Stepper currentStep={step} />
       <main className="page">
-        <ProductPage />
+        {step === 4 && <StatusPage onRestart={handleRestart} />}
+        {step >= 2 && step < 4 && <CheckoutPage />}
+        {step < 2 && <ProductPage />}
       </main>
     </div>
   )

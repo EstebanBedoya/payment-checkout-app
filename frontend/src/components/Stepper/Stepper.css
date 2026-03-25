@@ -1,0 +1,99 @@
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem var(--spacing-struct);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Each item = circle+label + connector */
+.stepper__item {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.stepper__item:last-child {
+  flex: 0;
+}
+
+/* Node: circle stacked above label */
+.stepper__node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+
+/* Circle */
+.stepper__circle {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.stepper__circle--active {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.stepper__circle--completed {
+  border-color: var(--primary);
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+/* Label */
+.stepper__label {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: color 0.2s ease, font-weight 0.2s ease;
+}
+
+.stepper__label--active {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.stepper__label--completed {
+  color: var(--primary);
+}
+
+/* Connector line between steps */
+.stepper__connector {
+  flex: 1;
+  height: 2px;
+  background-color: var(--outline-variant);
+  margin: 0 0.375rem;
+  margin-bottom: 1.25rem; /* offset down to align with circle center (circle 28px + label ~18px gap) */
+  transition: background-color 0.2s ease;
+}
+
+.stepper__connector--completed {
+  background-color: var(--primary);
+}
+
+/* Hide labels on very small screens */
+@media (max-width: 360px) {
+  .stepper__label {
+    display: none;
+  }
+
+  .stepper__connector {
+    margin-bottom: 0;
+  }
+}

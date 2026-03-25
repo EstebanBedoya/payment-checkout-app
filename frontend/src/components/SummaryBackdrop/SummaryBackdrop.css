@@ -36,6 +36,7 @@
   margin-top: 0;
   margin-bottom: var(--spacing-struct);
   text-align: center;
+  color: var(--text-inverse);
 }
 
 .summary-content {
@@ -44,6 +45,7 @@
   padding: var(--spacing-default);
   margin-bottom: var(--spacing-struct);
   box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+  color: var(--text-inverse);
 }
 
 .summary-table {
@@ -72,7 +74,7 @@
   gap: var(--spacing-default);
 }
 
-.btn-secondary {
+.backdrop-actions .btn-secondary {
   background: transparent;
   color: var(--text-inverse);
   border: 1px solid var(--text-muted);
@@ -89,7 +91,7 @@
   justify-content: center;
 }
 
-.btn-secondary:hover:not(:disabled) {
+.backdrop-actions .btn-secondary:hover:not(:disabled) {
   background: rgba(0,0,0,0.05);
 }
 

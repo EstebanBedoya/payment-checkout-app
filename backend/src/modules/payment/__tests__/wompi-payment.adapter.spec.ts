@@ -110,7 +110,7 @@ describe('WompiPaymentAdapter', () => {
 
       await adapter.createTransaction(baseParams)
 
-      expect((capturedBody.signature as Record<string, unknown>)?.integrity).toBe(expectedHash)
+      expect(capturedBody.signature).toBe(expectedHash)
     })
 
     it('sends privateKey in Authorization header and NOT in request body', async () => {

@@ -51,3 +51,9 @@
 .expiry-row .form-group {
   flex: 1;
 }
+
+@media (max-width: 480px) {
+  .expiry-row {
+    flex-direction: column;
+  }
+}

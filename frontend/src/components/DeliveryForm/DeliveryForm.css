@@ -14,3 +14,9 @@
 .delivery-form .row-group .form-group {
   flex: 1;
 }
+
+@media (max-width: 480px) {
+  .delivery-form .row-group {
+    flex-direction: column;
+  }
+}

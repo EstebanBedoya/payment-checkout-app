@@ -6,7 +6,11 @@ import { fetchProducts, type Product } from '../../api/products.api'
 import { formatCOP } from '../../utils/currency'
 import './ProductPage.css'
 
-export function ProductPage() {
+interface ProductPageProps {
+  onPayClick?: () => void
+}
+
+export function ProductPage({ onPayClick }: ProductPageProps = {}) {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
@@ -38,7 +42,7 @@ export function ProductPage() {
     return (
       <div className="product-detail-view">
         <div className="product-image-large">
-          <img src={product.imageUrl} alt={product.name} />
+          <img src={product.imageUrl} alt={product.name} loading="lazy" />
         </div>
         
         <div className="product-content-sheet">
@@ -50,14 +54,14 @@ export function ProductPage() {
           <div className="product-info-section">
             <p className="product-description">{product.description}</p>
             <p className="product-stock-badge">
-              {product.stock > 0 ? `${product.stock} unidades en bóveda` : 'Agotado'}
+              {product.stock > 0 ? `${product.stock} disponibles` : 'Sin stock disponible'}
             </p>
           </div>
-          
+
           <div className="action-area">
             <button
               className="btn-primary product-pay-btn"
-              onClick={() => dispatch(setStep(2))}
+              onClick={() => { dispatch(setStep(2)); onPayClick?.() }}
               disabled={product.stock === 0}
             >
               {product.stock === 0 ? 'Sin stock disponible' : 'Pagar con tarjeta de crédito'}
