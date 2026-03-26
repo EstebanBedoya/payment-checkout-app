@@ -3,7 +3,8 @@ import type { IWompiTokenizationAdapter, CardData, TokenizeResult } from './womp
 interface Config { publicKey: string; apiUrl: string }
 
 export class WompiTokenizationAdapter implements IWompiTokenizationAdapter {
-  constructor(private readonly config: Config) {}
+  private readonly config: Config
+  constructor(config: Config) { this.config = config }
 
   async tokenizeCard(data: CardData): Promise<TokenizeResult> {
     try {

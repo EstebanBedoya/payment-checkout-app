@@ -1,0 +1,11 @@
+aws_region       = "us-east-1"
+project_name     = "checkout-app"
+ec2_key_name     = "my-ec2-keypair"
+allowed_ssh_cidr = "0.0.0.0/0"
+wompi_api_url    = "https://api-sandbox.co.uat.wompi.dev/v1"
+
+# Sensitive variables — set these via TF_VAR_* environment variables in infra/.env:
+#   TF_VAR_db_password
+#   TF_VAR_wompi_private_key
+#   TF_VAR_wompi_public_key
+#   TF_VAR_wompi_integrity_key
